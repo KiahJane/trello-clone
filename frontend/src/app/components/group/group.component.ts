@@ -4,9 +4,9 @@ import { Component } from '@angular/core';
   selector: 'app-list',
   standalone: true,
   imports: [],
-  templateUrl: './list.component.html',
-  styleUrl: './list.component.css'
+  templateUrl: './group.component.html',
+  styleUrl: './group.component.css'
 })
-export class ListComponent {
+export class GroupComponent {
 
 }
