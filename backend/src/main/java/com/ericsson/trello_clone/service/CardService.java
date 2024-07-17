@@ -1,16 +1,16 @@
 package com.ericsson.trello_clone.service;
 
-import com.ericsson.trello_clone.model.Card;
-import com.ericsson.trello_clone.repository.CardRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.ericsson.trello_clone.domain.Card;
+import com.ericsson.trello_clone.domain.User;
+import com.ericsson.trello_clone.dto.CardDto;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CardService {
-    @Autowired
-    private CardRepository cardRepository;
+public interface CardService {
 
-    public Card save(Card card) {
-        return cardRepository.save(card);
-    }
+    Card create(CardDto cardDto);
+
+    Card update(CardDto cardDto);
+
+    void delete(User user, Long groupId);
 }

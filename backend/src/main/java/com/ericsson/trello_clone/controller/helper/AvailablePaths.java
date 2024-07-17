@@ -17,4 +17,6 @@ public class AvailablePaths {
     public static final String ALL_BOARDS = "/api/admin/boards";
     public static final String NEW_GROUP = "/api/user/newGroup";
     public static final String NEW_CARD = "/api/user/newCard";
+    public static final String GROUP = "/api/user/group/{groupId}";
 }
+

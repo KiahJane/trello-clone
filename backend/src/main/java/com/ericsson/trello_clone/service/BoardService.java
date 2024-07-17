@@ -9,8 +9,8 @@ import java.util.List;
 
 @Service
 public interface BoardService {
-    Board create(BoardDto boardDto, User user);
-    Board update(BoardDto boardDto, User user);
+    Board create(BoardDto boardDto);
+    Board update(BoardDto boardDto);
     Board getById(Long id);
     void addUserToBoard(Long boardId, User newUser);
     List<Board> getAllByUser(User user);

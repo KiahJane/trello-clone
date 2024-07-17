@@ -1,11 +1,9 @@
 package com.ericsson.trello_clone.controller;
 
-import com.ericsson.trello_clone.config.ApplicationRoles;
 import com.ericsson.trello_clone.controller.helper.AvailablePaths;
 import com.ericsson.trello_clone.controller.helper.CurrentUser;
 import com.ericsson.trello_clone.domain.User;
 import com.ericsson.trello_clone.dto.BoardDto;
-import com.ericsson.trello_clone.exceptions.PermissionException;
 import com.ericsson.trello_clone.jwt.principal.UserPrincipal;
 import com.ericsson.trello_clone.response.BoardResponse;
 import com.ericsson.trello_clone.service.BoardService;
@@ -18,24 +16,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.ericsson.trello_clone.utils.CheckPermissionUtils.*;
+
 @Slf4j
 @RestController
 @AllArgsConstructor
 public class BoardController {
     private BoardService boardService;
     private UserDetailService userDetailService;
-
-    private static void checkUserPermission(User user) {
-        if (!(user.getRole().equals(ApplicationRoles.USER.getDatabaseName()))) {
-            throw new PermissionException();
-        }
-    }
-
-    private static void checkAdminPermission(User user) {
-        if (!(user.getRole().equals(ApplicationRoles.ADMIN.getDatabaseName()))) {
-            throw new PermissionException();
-        }
-    }
 
     @PostMapping(AvailablePaths.NEW_BOARD)
     public ResponseEntity<BoardDto> createBoard(@CurrentUser UserPrincipal userPrincipal, @RequestBody BoardDto boardDto) {
@@ -45,7 +33,7 @@ public class BoardController {
 
         checkAdminPermission(user);
 
-        BoardDto result = BoardDto.build(boardService.create(boardDto, user));
+        BoardDto result = BoardDto.build(boardService.create(boardDto));
         log.info("New board [{}] successfully created.", result.getName());
 
         return ResponseEntity.ok(result);
@@ -58,7 +46,7 @@ public class BoardController {
 
         checkUserPermission(user);
 
-        BoardDto result = BoardDto.build(boardService.update(boardDto, user));
+        BoardDto result = BoardDto.build(boardService.update(boardDto));
         log.info("Board [{}] successfully updated.", result.getName());
         return ResponseEntity.ok(result);
     }
