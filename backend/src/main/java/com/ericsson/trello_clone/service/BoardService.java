@@ -1,16 +1,18 @@
 package com.ericsson.trello_clone.service;
 
-import com.ericsson.trello_clone.model.Board;
-import com.ericsson.trello_clone.repository.BoardRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.ericsson.trello_clone.domain.Board;
+import com.ericsson.trello_clone.domain.User;
+import com.ericsson.trello_clone.dto.BoardDto;
 import org.springframework.stereotype.Service;
 
-@Service
-public class BoardService {
-    @Autowired
-    private BoardRepository boardRepository;
+import java.util.List;
 
-    public Board save(Board board) {
-        return boardRepository.save(board);
-    }
+@Service
+public interface BoardService {
+    Board create(BoardDto boardDto, User user);
+    Board update(BoardDto boardDto, User user);
+    Board getById(Long id);
+    void addUserToBoard(Long boardId, User newUser);
+    List<Board> getAllByUser(User user);
+    List<Board> getAllBoards();
 }
