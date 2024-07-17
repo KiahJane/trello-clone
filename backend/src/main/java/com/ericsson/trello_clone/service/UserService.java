@@ -13,4 +13,6 @@ public interface UserService {
     void saveUserInformationFromAdmin(UserDto dto);
 
     List<String> getAllRoles();
+
+    User getMyInformation(User user);
 }

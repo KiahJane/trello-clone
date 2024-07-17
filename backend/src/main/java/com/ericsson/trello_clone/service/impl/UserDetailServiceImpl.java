@@ -72,7 +72,6 @@ public class UserDetailServiceImpl implements UserDetailService {
 
     @Override
     public User createUser(User user) {
-
         return repository.save(user);
     }
 

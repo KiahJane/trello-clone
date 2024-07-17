@@ -1,11 +1,9 @@
 package com.ericsson.trello_clone.controller;
 
-import com.ericsson.trello_clone.config.ApplicationRoles;
 import com.ericsson.trello_clone.controller.helper.AvailablePaths;
 import com.ericsson.trello_clone.controller.helper.CurrentUser;
 import com.ericsson.trello_clone.domain.User;
 import com.ericsson.trello_clone.dto.UserDto;
-import com.ericsson.trello_clone.exceptions.PermissionException;
 import com.ericsson.trello_clone.jwt.principal.UserPrincipal;
 import com.ericsson.trello_clone.response.ApiResponse;
 import com.ericsson.trello_clone.response.StringResponse;
@@ -20,6 +18,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.ericsson.trello_clone.utils.CheckPermissionUtils.*;
+
 @Slf4j
 @RestController
 @AllArgsConstructor
@@ -27,18 +27,12 @@ public class UserController {
     private UserService userService;
     private UserDetailService userDetailService;
 
-    private static void checkPermission(User user) {
-        if (!user.getRole().equals(ApplicationRoles.ADMIN.getDatabaseName())) {
-            throw new PermissionException();
-        }
-    }
-
     @GetMapping(AvailablePaths.ADMIN_LIST_OF_ALL_USERS)
     public ResponseEntity<UserDtoResponse> getAllUsersFromAdmin(@CurrentUser UserPrincipal userPrincipal) {
         log.info("Getting all users, account: {}", userPrincipal.getUsername());
         User user = userDetailService.getUserFromUserPrincipal(userPrincipal);
 
-        checkPermission(user);
+        checkAdminPermission(user);
         UserDtoResponse userDtoResponse = new UserDtoResponse();
         return ResponseEntity.ok(userDtoResponse.users(UserDto.build(userService.getAllUsers())));
     }
@@ -48,7 +42,7 @@ public class UserController {
         log.info("Changing user with id [{}], account: {}", userDto.getId(), userPrincipal.getUsername());
         User user = userDetailService.getUserFromUserPrincipal(userPrincipal);
 
-        checkPermission(user);
+        checkAdminPermission(user);
         userService.saveUserInformationFromAdmin(userDto);
 
         return ResponseEntity.ok(new ApiResponse(Boolean.TRUE, "User information are saved successfully."));
@@ -59,9 +53,16 @@ public class UserController {
         log.info("Getting all users, account: {}", userPrincipal.getUsername());
         User user = userDetailService.getUserFromUserPrincipal(userPrincipal);
 
-        checkPermission(user);
+        checkAdminPermission(user);
 
         return ResponseEntity.ok(StringResponse.build(userService.getAllRoles()));
     }
 
+    @GetMapping(AvailablePaths.USER_MY_INFORMATION)
+    public ResponseEntity<UserDto> getMyInformation(@CurrentUser UserPrincipal userPrincipal) {
+        log.info("Getting information from user username: {}", userPrincipal.getUsername());
+        User user = userDetailService.getUserFromUserPrincipal(userPrincipal);
+
+        return ResponseEntity.ok(UserDto.build(userService.getMyInformation(user)));
+    }
 }
