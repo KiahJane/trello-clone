@@ -1,13 +1,22 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router } from '@angular/router';
+import { ApplicationRoutes } from './app-main-rules/application-routes';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'trello-clone';
+
+  constructor(private router: Router) {}
+
+  navigateToAdminDashboard() {
+    this.router.navigate([ApplicationRoutes.ADMIN_HEADLINE_PAGE]);
+  }
+
+  showMessage() {
+    alert('Button clicked!');
+  }
 }
