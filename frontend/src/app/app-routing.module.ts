@@ -1,15 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
-import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
-import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { RegisterComponent } from './components/auth/register/register.component';
+import { AdminDashboardComponent } from './components/admin/admin-dashboard.component';
+import { UserDashboardComponent } from './components/user/user-dashboard.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'admin-dashboard', component: AdminDashboardComponent },
-  { path: 'user-dashboard', component: UserDashboardComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' }
-];
+    // Auth routes
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent },
+  
+    // Admin routes
+    { path: 'admin', component: AdminDashboardComponent },
+  
+    // User routes
+    { path: 'user', component: UserDashboardComponent },
+  
+    // Default route
+    { path: '', redirectTo: '/login', pathMatch: 'full' },
+  
+    // Wildcard route (for any undefined paths)
+    { path: '**', redirectTo: '/login' }
+  ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
