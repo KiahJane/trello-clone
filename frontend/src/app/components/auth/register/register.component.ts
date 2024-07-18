@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../../service/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,10 +15,9 @@ export class RegisterComponent {
 
   register() {
     const user = { username: this.username, password: this.password };
-    this.authService.register(user).subscribe(response => {
-      // Handle registration response
+    this.authService.register(user).subscribe(() => {
       this.router.navigate(['/login']);
-    }, error => {
+    }, (error: any) => {
       // Handle error
       console.error('Registration failed', error);
     });

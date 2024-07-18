@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../../service/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,11 +14,9 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) { }
 
   login() {
-    this.authService.login(this.username, this.password).subscribe(response => {
-      // Handle login response
+    this.authService.login(this.username, this.password).subscribe(() => {
       this.router.navigate(['/home']);
-    }, error => {
-      // Handle error
+    }, (error: any) => {
       console.error('Login failed', error);
     });
   }
