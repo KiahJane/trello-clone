@@ -3,7 +3,6 @@ package com.ericsson.trello_clone.service.impl;
 import com.ericsson.trello_clone.config.ApplicationRoles;
 import com.ericsson.trello_clone.domain.User;
 import com.ericsson.trello_clone.dto.UserDto;
-import com.ericsson.trello_clone.exceptions.EntityNotFoundInDatabaseException;
 import com.ericsson.trello_clone.repository.UserRepository;
 import com.ericsson.trello_clone.service.UserService;
 import jakarta.validation.constraints.NotNull;
@@ -60,8 +59,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getMyInformation(User user) {
-        return repository.findByUser(user)
-                .orElseThrow(() -> new EntityNotFoundInDatabaseException(user.getUsername(), user.getId()));
+        Long userId = user.getId();
+
+        return repository.getById(userId);
     }
 
 
