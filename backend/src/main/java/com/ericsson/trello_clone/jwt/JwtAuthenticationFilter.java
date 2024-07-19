@@ -46,8 +46,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         try {
             String path = request.getRequestURI();
 
-            if (AvailablePaths.AUTH_LOG_IN.equals(path)
-                    || AvailablePaths.AUTH_SIGN_IN.equals(path)) {
+            if (AvailablePaths.AUTH_LOGIN.equals(path)
+                    || AvailablePaths.AUTH_REGISTER.equals(path)) {
                 filterChain.doFilter(request, response);
                 return;
             }

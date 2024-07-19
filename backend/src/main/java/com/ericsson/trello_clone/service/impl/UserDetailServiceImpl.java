@@ -59,6 +59,10 @@ public class UserDetailServiceImpl implements UserDetailService {
     }
 
     @Override
+    public User getUserByEmail(String email) {
+        return repository.findByEmail(email);
+    }
+    @Override
     public boolean userExistsByUsername(String username) {
         User user = repository.findByUsername(username);
         return user != null;
@@ -72,6 +76,13 @@ public class UserDetailServiceImpl implements UserDetailService {
 
     @Override
     public User createUser(User user) {
+        return repository.save(user);
+    }
+
+    @Override
+    public User updateUser(UserDto userDto) {
+        User user = getUserFromUserDto(userDto);
+        user.updateEntity(userDto);
         return repository.save(user);
     }
 

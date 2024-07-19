@@ -3,7 +3,7 @@ package com.ericsson.trello_clone.domain;
 import com.ericsson.trello_clone.config.ApplicationRoles;
 import com.ericsson.trello_clone.dto.BoardDto;
 import com.ericsson.trello_clone.dto.UserDto;
-import com.ericsson.trello_clone.request.SignUpRequest;
+import com.ericsson.trello_clone.request.RegisterRequest;
 import com.ericsson.trello_clone.utils.StringUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -60,12 +60,12 @@ public class User implements Serializable {
     )
     private Set<Board> boards;
 
-    public static User buildUserForCreate(SignUpRequest signUpRequest) {
+    public static User buildUserForCreate(RegisterRequest registerRequest) {
         return User.builder()
                 .id(null)
-                .username(signUpRequest.getUsername())
-                .password(signUpRequest.getPassword())
-                .email(StringUtils.allLowercase(signUpRequest.getEmail()))
+                .username(registerRequest.getUsername())
+                .password(registerRequest.getPassword())
+                .email(StringUtils.allLowercase(registerRequest.getEmail()))
                 .role(ApplicationRoles.UNAPPROVED_USER.getDatabaseName())
                 .approvedByAdmin(false)
                 .isExpired(false)

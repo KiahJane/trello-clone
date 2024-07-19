@@ -7,7 +7,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SignUpRequest {
+public class RegisterRequest {
     @JsonProperty("firstName")
     private String firstName;
 
