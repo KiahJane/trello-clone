@@ -17,22 +17,14 @@ export class RegisterComponent {
   constructor(private authService: AuthService, private router: Router) { }
 
   onRegister() {
-    this.authService.register({
+    this.authService.registerUser({
       firstName: this.firstName,
       lastName: this.lastName,
       username: this.username,
       email: this.email,
       password: this.password
-    }).subscribe(response => {
-      localStorage.setItem('token', response.token);
-      const role = this.authService.getRole();
-      if (role === 'admin') {
-        this.router.navigate(['/admin']);
-      } else if (role === 'user') {
-        this.router.navigate(['/user']);
-      }
-    }, error => {
+    }), error => {
       alert('Registration failed');
-    });
+    };
   }
 }

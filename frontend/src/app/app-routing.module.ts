@@ -13,13 +13,13 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   {
-    path: ApplicationRoutes.ADMIN, component: AdminDashboardComponent, canActivate: [AuthGuard], data: { role: 'admin' },
+    path: ApplicationRoutes.Admin, component: AdminDashboardComponent, canActivate: [AuthGuard], data: { role: 'admin' },
     children: [
       { path: 'users', component: AdminUsersComponent },
       { path: 'boards', component: AdminBoardsComponent },
     ]
   },
-  { path: ApplicationRoutes.USER, component: UserDashboardComponent, canActivate: [AuthGuard], data: { role: 'user' } },
+  { path: ApplicationRoutes.User, component: UserDashboardComponent, canActivate: [AuthGuard], data: { role: 'user' } },
   { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 

@@ -1,4 +1,4 @@
-export default class LogInModel {
+export default class LoginModel {
     usernameOrEmail: string;
     password: string;
   
@@ -9,6 +9,6 @@ export default class LogInModel {
   }
   
   export function getBlank() {
-    return new LogInModel("", "");
+    return new LoginModel("", "");
   }
   

@@ -13,7 +13,7 @@ export class AppComponent {
   constructor(private router: Router) {}
 
   navigateToAdminDashboard() {
-    this.router.navigate([ApplicationRoutes.ADMIN]);
+    this.router.navigate([ApplicationRoutes.Admin]);
   }
 
   showMessage() {

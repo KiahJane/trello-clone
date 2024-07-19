@@ -2,20 +2,22 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import RegisterModel from '../models/register.model';
-import LogInModel from '../models/login.model';
+import LoginModel from '../models/login.model';
 import { Router } from '@angular/router';
 import { extractRoleFromJson } from './helper.service';
 import { ApplicationRoutes, BackendRoutes } from '../app-main-rules/routes.enum';
 import { ApplicationRoles } from '../app-main-rules/application-roles';
 import { MessageService } from 'primeng/api';
+import PasswordChangeModel from '../models/password-change.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000';
-  registerUrl: string = `${this.apiUrl}/api/auth/${BackendRoutes.Register}`;
-  loginUrl: string = `${this.apiUrl}/api/auth/${BackendRoutes.Login}`;
+  private apiUrl = ApplicationRoutes.BASE_API_URL;
+  loginUrl: string = `${this.apiUrl}${BackendRoutes.AUTH_LOGIN}`;
+  registerUrl: string = `${this.apiUrl}${BackendRoutes.AUTH_REGISTER}`;
+  private changePasswordUrl = `${this.apiUrl}${BackendRoutes.CHANGE_PASSWORD}`;
 
   private ERROR_MESSAGE = 'Problem with login';
 
@@ -25,25 +27,25 @@ export class AuthService {
     private router: Router
   ) {}
 
-  login(data: LogInModel): Observable<any> {
+  login(data: LoginModel): Observable<any> {
     return this.http.post<any>(this.loginUrl, data, {
       headers: { 'Content-Type': 'application/json' }
     })
-      .pipe(map(user => {
-        localStorage.setItem('token', user.token);
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        return user;
+      .pipe(map(response => {
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('currentUser', JSON.stringify(response.user));
+        return response;
       }));
   }
 
-  register(data: RegisterModel): Observable<any> {
+  registerUser(data: RegisterModel): Observable<any> {
     return this.http.post<any>(this.registerUrl, data, {
       headers: { 'Content-Type': 'application/json' }
     })
-      .pipe(map(user => {
-        localStorage.setItem('token', user.accessToken);
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        return user;
+      .pipe(map(response => {
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('currentUser', JSON.stringify(response.user));
+        return response;
       }));
   }
 
@@ -78,15 +80,21 @@ export class AuthService {
       this.router.navigateByUrl(ApplicationRoutes.APP_MAIN);
       this.messageService.add({ severity: 'error', summary: 'Error', detail: this.ERROR_MESSAGE });
     } else if (role === ApplicationRoles.ADMIN) {
-      this.router.navigateByUrl(ApplicationRoutes.Admin);
+      this.router.navigateByUrl(ApplicationRoutes.ADMIN);
     } else if (role === ApplicationRoles.USER) {
-      this.router.navigateByUrl(ApplicationRoutes.User);
+      this.router.navigateByUrl(ApplicationRoutes.USER);
     } else if (role === ApplicationRoles.UNAPPROVED_USER) {
-      this.router.navigateByUrl(ApplicationRoutes.UnapprovedUser);
+      this.router.navigateByUrl(ApplicationRoutes.UNAPPROVED_USER);
     }
   }
 
   rerouteToMainPage() {
     this.router.navigateByUrl(ApplicationRoutes.APP_MAIN);
+  }
+
+  changePassword(data: PasswordChangeModel): Observable<any> {
+    return this.http.post<any>(this.changePasswordUrl, data, {
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
 }
