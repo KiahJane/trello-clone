@@ -1,12 +1,15 @@
 import { Board } from "./board.model";
 
-export interface UserDto {
-  id: number;
-  username: string;
-  firstName: string;
-  lastName: string;
-  fullName: string;
-  email: string;
-  role: string;
-  boards: Board[];
+export class User {
+  constructor(
+    public id: number,
+    public username: string,
+    public firstName: string,
+    public lastName: string,
+    public fullName: string,
+    public email: string,
+    public role: string,
+    public boards: Board[]
+  ) {}
 }
+

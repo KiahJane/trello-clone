@@ -1,7 +1,9 @@
 import { Group } from './group.model';
 
-export interface Card {
-  id: number;
-  text: string;
-  group: Group;
+export class Card {
+  constructor(
+    public id: number,
+    public text: string,
+    public group: Group
+  ) {}
 }
