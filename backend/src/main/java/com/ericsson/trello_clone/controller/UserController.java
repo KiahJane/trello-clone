@@ -27,8 +27,8 @@ public class UserController {
     private UserService userService;
     private UserDetailService userDetailService;
 
-    @GetMapping(AvailablePaths.ADMIN_LIST_OF_ALL_USERS)
-    public ResponseEntity<UserDtoResponse> getAllUsersFromAdmin(@CurrentUser UserPrincipal userPrincipal) {
+    @GetMapping(AvailablePaths.ADMIN_USERS)
+    public ResponseEntity<UserDtoResponse> getAllUsers(@CurrentUser UserPrincipal userPrincipal) {
         log.info("Getting all users, account: {}", userPrincipal.getUsername());
         User user = userDetailService.getUserFromUserPrincipal(userPrincipal);
 
@@ -37,7 +37,7 @@ public class UserController {
         return ResponseEntity.ok(userDtoResponse.users(UserDto.build(userService.getAllUsers())));
     }
 
-    @PostMapping(AvailablePaths.ADMIN_LIST_OF_ALL_USERS)
+    @PostMapping(AvailablePaths.ADMIN_USERS)
     public ResponseEntity<ApiResponse> saveUserInformationFromAdmin(@CurrentUser UserPrincipal userPrincipal, @RequestBody UserDto userDto) {
         log.info("Changing user with id [{}], account: {}", userDto.getId(), userPrincipal.getUsername());
         User user = userDetailService.getUserFromUserPrincipal(userPrincipal);
@@ -58,7 +58,7 @@ public class UserController {
         return ResponseEntity.ok(StringResponse.build(userService.getAllRoles()));
     }
 
-    @GetMapping(AvailablePaths.USER_MY_INFORMATION)
+    @GetMapping(AvailablePaths.USER_INFO)
     public ResponseEntity<UserDto> getMyInformation(@CurrentUser UserPrincipal userPrincipal) {
         log.info("Getting information from user username: {}", userPrincipal.getUsername());
         User user = userDetailService.getUserFromUserPrincipal(userPrincipal);

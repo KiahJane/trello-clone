@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
-import {ApplicationRoutes, BackendRoutes} from "../app-main-rules/application-routes";
+import {BackendRoutes} from "../app-main-rules/routes.enum";
 
 interface JwtUser {
   accessToken: string;
@@ -10,8 +10,8 @@ interface JwtUser {
 export class JwtInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler) {
 
-    let isSignUp = request.url.endsWith(BackendRoutes.SIGN_IN_END);
-    let isLogIn = request.url.endsWith(BackendRoutes.LOG_IN_END);
+    let isSignUp = request.url.endsWith(BackendRoutes.Register);
+    let isLogIn = request.url.endsWith(BackendRoutes.Login);
 
     if (!(isSignUp || isLogIn)) {
       let currentUser = localStorage.getItem('currentUser');

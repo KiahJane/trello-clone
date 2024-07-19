@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApplicationRoutes } from './app-main-rules/application-routes';
+import { ApplicationRoutes } from './app-main-rules/routes.enum';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +13,7 @@ export class AppComponent {
   constructor(private router: Router) {}
 
   navigateToAdminDashboard() {
-    this.router.navigate([ApplicationRoutes.ADMIN_HEADLINE_PAGE]);
+    this.router.navigate([ApplicationRoutes.Admin]);
   }
 
   showMessage() {

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../../service/auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,18 +8,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+  firstName: string = '';
+  lastName: string = '';
   username: string = '';
+  email: string = '';
   password: string = '';
 
   constructor(private authService: AuthService, private router: Router) { }
 
-  register() {
-    const user = { username: this.username, password: this.password };
-    this.authService.register(user).subscribe(() => {
-      this.router.navigate(['/login']);
-    }, (error: any) => {
-      // Handle error
-      console.error('Registration failed', error);
-    });
+  onRegister() {
+    this.authService.registerUser({
+      firstName: this.firstName,
+      lastName: this.lastName,
+      username: this.username,
+      email: this.email,
+      password: this.password
+    }), error => {
+      alert('Registration failed');
+    };
   }
 }

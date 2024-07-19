@@ -64,7 +64,7 @@ public class BoardController {
         return ResponseEntity.ok(BoardResponse.build(boardDtos));
     }
 
-    @GetMapping(AvailablePaths.ALL_BOARDS)
+    @GetMapping(AvailablePaths.ADMIN_BOARDS)
     public ResponseEntity<BoardResponse> getAllBoards(@CurrentUser UserPrincipal userPrincipal) {
         log.info("Retrieving all boards");
         User user = userDetailService.getUserFromUserPrincipal(userPrincipal);
@@ -74,7 +74,6 @@ public class BoardController {
         return ResponseEntity.ok(BoardResponse.build(boardService.getAllBoards().stream()
                 .map(BoardDto::build)
                 .collect(Collectors.toList())));
-
     }
 
     @PutMapping(AvailablePaths.BOARD)

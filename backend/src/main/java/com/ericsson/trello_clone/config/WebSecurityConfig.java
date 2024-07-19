@@ -58,7 +58,7 @@ public class WebSecurityConfig {
                         .requireExplicitSave(true))
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                        .requestMatchers(AvailablePaths.AUTH_SIGN_IN, AvailablePaths.AUTH_LOG_IN).permitAll()
+                        .requestMatchers(AvailablePaths.AUTH_REGISTER, AvailablePaths.AUTH_LOGIN).permitAll()
                         .requestMatchers("/api/user/information", "/api/user/comment/**").permitAll()
                         .requestMatchers("/api/user/**").authenticated()
                         .requestMatchers("/api/admin/**").authenticated()
