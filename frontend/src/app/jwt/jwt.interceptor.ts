@@ -10,8 +10,8 @@ interface JwtUser {
 export class JwtInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler) {
 
-    let isSignUp = request.url.endsWith(BackendRoutes.Register);
-    let isLogIn = request.url.endsWith(BackendRoutes.Login);
+    let isSignUp = request.url.endsWith(BackendRoutes.AUTH_REGISTER);
+    let isLogIn = request.url.endsWith(BackendRoutes.AUTH_LOGIN);
 
     if (!(isSignUp || isLogIn)) {
       let currentUser = localStorage.getItem('currentUser');
