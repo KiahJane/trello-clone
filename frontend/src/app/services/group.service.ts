@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Group } from '../models/';
+import { Group } from '../models/group.model';
 import { ConfigService } from './config.service';
+import { BackendRoutes } from '../app-main-rules/routes.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -11,14 +12,14 @@ export class GroupService {
   constructor(private http: HttpClient, private configService: ConfigService) {}
 
   createGroup(boardId: string, group: Group): Observable<Group> {
-    return this.http.post<Group>(`${this.configService.baseApiUrl}/boards/${boardId}/groups`, group);
+    return this.http.post<Group>(`${this.configService.baseApiUrl}${BackendRoutes.NEW_GROUP.replace('{boardId}', boardId)}`, group);
   }
 
   editGroup(groupId: string, group: Group): Observable<Group> {
-    return this.http.put<Group>(`${this.configService.baseApiUrl}/groups/${groupId}`, group);
+    return this.http.put<Group>(`${this.configService.baseApiUrl}${BackendRoutes.GROUP.replace('{groupId}', groupId)}`, group);
   }
 
   deleteGroup(groupId: string): Observable<void> {
-    return this.http.delete<void>(`${this.configService.baseApiUrl}/groups/${groupId}`);
+    return this.http.delete<void>(`${this.configService.baseApiUrl}${BackendRoutes.GROUP.replace('{groupId}', groupId)}`);
   }
 }

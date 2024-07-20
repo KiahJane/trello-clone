@@ -13,11 +13,10 @@ export enum ApplicationRoutes {
 export enum BackendRoutes {
   AUTH_LOGIN = '/api/auth/login',
   AUTH_REGISTER = '/api/auth/register',
-  CHANGE_PASSWORD = "api/auth/changePassword",
+  CHANGE_PASSWORD = 'api/auth/changePassword',
   ADMIN = '/api/admin/dashboard',
   ADMIN_USERS = '/api/admin/users',
   ADMIN_BOARDS = '/api/admin/boards',
-  ADMIN_ROLES = '/api/admin/roles',
   NEW_BOARD = '/api/admin/newBoard',
   BOARD = '/api/admin/board/{boardId}',
   USER = '/api/user/dashboard',
@@ -27,4 +26,7 @@ export enum BackendRoutes {
   NEW_GROUP = '/api/user/newGroup',
   GROUP = '/api/user/group/{groupId}',
   NEW_CARD = '/api/user/newCard',
+  CARD = '/api/user/card/{cardId}'
 }
+
+
