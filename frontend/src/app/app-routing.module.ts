@@ -9,18 +9,18 @@ import { UserDashboardComponent } from './components/user/user-dashboard/user-da
 import { AuthGuard } from './services/auth.guard';
 import { ApplicationRoutes } from './app-main-rules/routes.enum';
 
-export const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+const routes: Routes = [
+  { path: ApplicationRoutes.LOGIN, component: LoginComponent },
+  { path: ApplicationRoutes.REGISTER, component: RegisterComponent },
   {
     path: ApplicationRoutes.ADMIN, component: AdminDashboardComponent, canActivate: [AuthGuard], data: { role: 'admin' },
     children: [
-      { path: 'users', component: AdminUsersComponent },
-      { path: 'boards', component: AdminBoardsComponent },
+      { path: ApplicationRoutes.ADMIN_USERS, component: AdminUsersComponent },
+      { path: ApplicationRoutes.ADMIN_BOARDS, component: AdminBoardsComponent },
     ]
   },
   { path: ApplicationRoutes.USER, component: UserDashboardComponent, canActivate: [AuthGuard], data: { role: 'user' } },
-  { path: '', redirectTo: '/login', pathMatch: 'full' }
+  { path: '', redirectTo: ApplicationRoutes.LOGIN, pathMatch: 'full' }
 ];
 
 @NgModule({

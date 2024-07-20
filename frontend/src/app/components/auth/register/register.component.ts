@@ -23,8 +23,6 @@ export class RegisterComponent {
       username: this.username,
       email: this.email,
       password: this.password
-    }), error => {
-      alert('Registration failed');
-    };
+    })
   }
 }

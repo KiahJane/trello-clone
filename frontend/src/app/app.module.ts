@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router'; 
 
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
 
+import { AuthGuard } from './services/auth.guard';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
@@ -34,14 +36,18 @@ import { MessageService } from 'primeng/api';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    HttpClientModule,
     FormsModule,
+    HttpClientModule,
     AppRoutingModule,
+    RouterModule,
     MessagesModule,
     MessageModule,
     ToastModule
   ],
-  providers: [MessageService],
+  providers: [
+    MessageService,
+    AuthGuard
+  ], 
   bootstrap: [AppComponent]
 })
 export class AppModule { }

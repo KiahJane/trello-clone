@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BoardService } from '../../../services/board.service';
-import { BoardResponse } from '../../../models/board-response.model';
+import { Board } from '../../../models/board.model';
 
 @Component({
   selector: 'app-admin-boards',
@@ -8,7 +8,7 @@ import { BoardResponse } from '../../../models/board-response.model';
   styleUrls: ['./admin-boards.component.css']
 })
 export class AdminBoardsComponent {
-  boards!: BoardResponse;
+  boards!: Board[];
 
   constructor(private boardService: BoardService) {}
 

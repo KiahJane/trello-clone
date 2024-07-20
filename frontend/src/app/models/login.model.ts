@@ -1,9 +1,9 @@
 export default class LoginModel {
-    usernameOrEmail: string;
+    username: string;
     password: string;
   
     constructor(usernameOrEmail: string, password: string) {
-      this.usernameOrEmail = usernameOrEmail;
+      this.username = usernameOrEmail;
       this.password = password;
     }
   }

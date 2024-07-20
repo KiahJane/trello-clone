@@ -8,13 +8,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  usernameOrEmail: string = '';
+  username: string = '';
   password: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
   onLogin() {
-    this.authService.login({ usernameOrEmail: this.usernameOrEmail, password: this.password }).subscribe(response => {
+    this.authService.login({ username: this.username, password: this.password }).subscribe(response => {
       localStorage.setItem('token', response.token);
       const role = this.authService.getRole();
       if (role === 'admin') {

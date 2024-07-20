@@ -2,10 +2,12 @@ export enum ApplicationRoutes {
   BASE_API_URL = 'https://localhost:3000',
   APP_MAIN = 'trello-clone',
   UNAPPROVED_USER = 'webpage',
-  ADMIN = 'admin/dashboard',
+  LOGIN = 'login',
+  REGISTER = 'register',
+  ADMIN = 'admin',
   ADMIN_USERS = 'admin/users',
   ADMIN_BOARDS = 'admin/boards',
-  USER = 'user/dashboard',
+  USER = 'user',
   USER_INFO = 'user/my-information',
 }
 
