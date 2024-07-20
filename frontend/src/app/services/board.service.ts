@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Board } from '../models/board.model'
+import { Board } from '../models/board.model';
 import { ApplicationRoutes } from '../app-main-rules/routes.enum';
 import { ConfigService } from './config.service';
 
@@ -17,5 +17,21 @@ export class BoardService {
 
   getBoardById(boardId: string): Observable<Board> {
     return this.http.get<Board>(`${this.configService.baseApiUrl}/boards/${boardId}`);
+  }
+
+  createBoard(boardDto: Board): Observable<Board> {
+    return this.http.post<Board>(`${this.configService.baseApiUrl}${ApplicationRoutes.NEW_BOARD}`, boardDto);
+  }
+
+  updateBoardFromUser(boardDto: Board): Observable<Board> {
+    return this.http.put<Board>(`${this.configService.baseApiUrl}${ApplicationRoutes.USER_BOARD}`, boardDto);
+  }
+
+  getAllBoardsFromUser(): Observable<Board[]> {
+    return this.http.get<Board[]>(`${this.configService.baseApiUrl}${ApplicationRoutes.USER_BOARDS}`);
+  }
+
+  addUserToBoard(boardId: number, userId: number): Observable<void> {
+    return this.http.put<void>(`${this.configService.baseApiUrl}${ApplicationRoutes.BOARD}/${boardId}/users/${userId}`, {});
   }
 }
