@@ -1,7 +1,6 @@
 package com.ericsson.trello_clone.service.impl;
 
 import com.ericsson.trello_clone.domain.Card;
-import com.ericsson.trello_clone.domain.User;
 import com.ericsson.trello_clone.dto.CardDto;
 import com.ericsson.trello_clone.exceptions.EntityNotFoundInDatabaseException;
 import com.ericsson.trello_clone.repository.CardRepository;
@@ -40,7 +39,7 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public void delete(User user, Long cardId) {
+    public void delete(Long cardId) {
         Card card = repository.findById(cardId)
                 .orElseThrow(() -> new EntityNotFoundInDatabaseException("Card not found in database."));
         repository.delete(card);

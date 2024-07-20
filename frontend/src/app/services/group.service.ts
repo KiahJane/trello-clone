@@ -11,15 +11,15 @@ import { BackendRoutes } from '../app-main-rules/routes.enum';
 export class GroupService {
   constructor(private http: HttpClient, private configService: ConfigService) {}
 
-  createGroup(boardId: string, group: Group): Observable<Group> {
+  createGroupUser(boardId: string, group: Group): Observable<Group> {
     return this.http.post<Group>(`${this.configService.baseApiUrl}${BackendRoutes.NEW_GROUP.replace('{boardId}', boardId)}`, group);
   }
 
-  editGroup(groupId: string, group: Group): Observable<Group> {
+  updateGroupUser(groupId: string, group: Group): Observable<Group> {
     return this.http.put<Group>(`${this.configService.baseApiUrl}${BackendRoutes.GROUP.replace('{groupId}', groupId)}`, group);
   }
 
-  deleteGroup(groupId: string): Observable<void> {
+  deleteGroupUser(groupId: string): Observable<void> {
     return this.http.delete<void>(`${this.configService.baseApiUrl}${BackendRoutes.GROUP.replace('{groupId}', groupId)}`);
   }
 }

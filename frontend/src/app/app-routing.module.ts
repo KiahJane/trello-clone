@@ -9,7 +9,7 @@ import { UserDashboardComponent } from './components/user/user-dashboard/user-da
 import { AuthGuard } from './services/auth.guard';
 import { ApplicationRoutes } from './app-main-rules/routes.enum';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   {

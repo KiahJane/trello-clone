@@ -22,7 +22,7 @@ export class UserService {
   }
 
   getUserById(userId: string): Observable<User> {
-    return this.http.get<User>(`${this.configService.baseApiUrl}${BackendRoutes.ADMIN_USERS}/${userId}`);
+    return this.http.get<User>(`${this.configService.baseApiUrl}${BackendRoutes.ADMIN_USERS.replace('{userId}', userId)}`);
   }
 
   createUser(user: User): Observable<User> {
@@ -30,10 +30,10 @@ export class UserService {
   }
 
   updateUser(userId: string, user: User): Observable<User> {
-    return this.http.put<User>(`${this.configService.baseApiUrl}${BackendRoutes.ADMIN_USERS}/${userId}`, user);
+    return this.http.put<User>(`${this.configService.baseApiUrl}${BackendRoutes.ADMIN_USERS.replace('{userId}', userId)}`, user);
   }
 
   deleteUser(userId: string): Observable<void> {
-    return this.http.delete<void>(`${this.configService.baseApiUrl}${BackendRoutes.ADMIN_USERS}/${userId}`);
+    return this.http.delete<void>(`${this.configService.baseApiUrl}${BackendRoutes.ADMIN_USERS.replace('{userId}', userId)}`);
   }
 }

@@ -13,7 +13,7 @@ export class AdminBoardsComponent {
   constructor(private boardService: BoardService) {}
 
   ngOnInit() {
-    this.boardService.getAllBoards().subscribe(response => {
+    this.boardService.getAllBoardsUser().subscribe(response => {
       this.boards = response;
     });
   }

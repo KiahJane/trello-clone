@@ -15,7 +15,7 @@ export class CardService {
     return this.http.post<Card>(`${this.configService.baseApiUrl}${BackendRoutes.NEW_CARD.replace('{groupId}', groupId)}`, card);
   }
 
-  editCard(cardId: string, card: Card): Observable<Card> {
+  updateCard(cardId: string, card: Card): Observable<Card> {
     return this.http.put<Card>(`${this.configService.baseApiUrl}${BackendRoutes.CARD.replace('{cardId}', cardId)}`, card);
   }
 

@@ -45,6 +45,12 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
+    public void delete(Long boardId) {
+        Board board = getById(boardId);
+        repository.delete(board);
+    }
+
+    @Override
     public void addUserToBoard(Long boardId, User newUser) {
         Board board = getById(boardId);
         if (board == null) {
