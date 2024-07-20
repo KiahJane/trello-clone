@@ -48,16 +48,6 @@ public class UserController {
         return ResponseEntity.ok(new ApiResponse(Boolean.TRUE, "User information are saved successfully."));
     }
 
-    @GetMapping(AvailablePaths.ADMIN_ROLES)
-    public ResponseEntity<StringResponse> getAllUserRolesFromAdmin(@CurrentUser UserPrincipal userPrincipal) {
-        log.info("Getting all users, account: {}", userPrincipal.getUsername());
-        User user = userDetailService.getUserFromUserPrincipal(userPrincipal);
-
-        checkAdminPermission(user);
-
-        return ResponseEntity.ok(StringResponse.build(userService.getAllRoles()));
-    }
-
     @GetMapping(AvailablePaths.USER_INFO)
     public ResponseEntity<UserDto> getMyInformation(@CurrentUser UserPrincipal userPrincipal) {
         log.info("Getting information from user username: {}", userPrincipal.getUsername());

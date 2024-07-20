@@ -9,7 +9,6 @@ public class AvailablePaths {
     public static final String ADMIN = "/api/admin/dashboard";
     public static final String ADMIN_USERS = "/api/admin/users";
     public static final String ADMIN_BOARDS = "/api/admin/boards";
-    public static final String ADMIN_ROLES = "/api/admin/roles";
     public static final String NEW_BOARD = "/api/admin/newBoard";
     public static final String BOARD = "/api/admin/board/{boardId}";
 
