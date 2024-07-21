@@ -12,6 +12,7 @@ import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
 
 import { AuthGuard } from './services/auth.guard';
+import { AuthService } from './services/auth.service';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
@@ -24,7 +25,7 @@ import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    //AppComponent,
     LoginComponent,
     RegisterComponent,
     AdminDashboardComponent,
@@ -34,6 +35,7 @@ import { MessageService } from 'primeng/api';
     BoardSummaryComponent
   ],
   imports: [
+    AppComponent,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -46,8 +48,9 @@ import { MessageService } from 'primeng/api';
   ],
   providers: [
     MessageService,
-    AuthGuard
+    AuthGuard,
+    AuthService
   ], 
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ],
 })
 export class AppModule { }

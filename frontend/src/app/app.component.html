@@ -2,10 +2,17 @@
   <header>
     <h1>Welcome to Trello Clone</h1>
   </header>
+  <nav>
+    <ul>
+      <li><a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Login</a></li>
+      <li><a routerLink="/register" routerLinkActive="active" ariaCurrentWhenActive="page">Register</a></li>
+    </ul>
+  </nav>
   <div class="content">
     <p>This is a basic UI setup for the Trello clone application.</p>
     <button (click)="showMessage()">Click me</button>
-    <button (click)="navigateToAdminDashboard()">Go to Admin Dashboard</button>
+    <button (click)="navigateToLogin()">Go to Login</button>
+    <button (click)="navigateToRegister()">Go to Register</button>
     <router-outlet></router-outlet>
   </div>
 </div>

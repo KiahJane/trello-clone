@@ -9,7 +9,7 @@ import { UserDashboardComponent } from './components/user/user-dashboard/user-da
 import { AuthGuard } from './services/auth.guard';
 import { ApplicationRoutes } from './app-main-rules/routes.enum';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: ApplicationRoutes.LOGIN, component: LoginComponent },
   { path: ApplicationRoutes.REGISTER, component: RegisterComponent },
   {
@@ -24,7 +24,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [ RouterModule.forRoot(routes) ],
+  exports: [ RouterModule ]
 })
 export class AppRoutingModule { }
