@@ -5,5 +5,5 @@ import { ApplicationRoutes } from '../app-main-rules/routes.enum';
   providedIn: 'root'
 })
 export class ConfigService {
-  public readonly baseApiUrl = ApplicationRoutes.BaseApiUrl;
+  public readonly baseApiUrl = ApplicationRoutes.BASE_API_URL;
 }

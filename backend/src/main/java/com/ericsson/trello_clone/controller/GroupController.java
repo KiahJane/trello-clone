@@ -23,7 +23,7 @@ public class GroupController {
     private UserDetailService userDetailService;
 
     @PostMapping(AvailablePaths.NEW_GROUP)
-    public ResponseEntity<GroupDto> createGroup(@CurrentUser UserPrincipal userPrincipal, @RequestBody GroupDto groupDto) {
+    public ResponseEntity<GroupDto> createGroupUser(@CurrentUser UserPrincipal userPrincipal, @RequestBody GroupDto groupDto) {
         log.info("Creating new group from account: {}", userPrincipal.getUsername());
         User user = userDetailService.getUserFromUserPrincipal(userPrincipal);
 
@@ -36,7 +36,7 @@ public class GroupController {
     }
 
     @PutMapping(AvailablePaths.GROUP)
-    public ResponseEntity<GroupDto> updateGroupFromUser(@CurrentUser UserPrincipal userPrincipal, @RequestBody GroupDto groupDto) {
+    public ResponseEntity<GroupDto> updateGroupUser(@PathVariable Long boardId, @PathVariable("id") Long groupId, @CurrentUser UserPrincipal userPrincipal, @RequestBody GroupDto groupDto) {
         log.info("Updating group [{}] from account: {}", groupDto.getName(), userPrincipal.getUsername());
         User user = userDetailService.getUserFromUserPrincipal(userPrincipal);
 
@@ -48,14 +48,14 @@ public class GroupController {
     }
 
     @DeleteMapping(AvailablePaths.GROUP)
-    public ResponseEntity<ApiResponse> deleteGroupFromUser(@CurrentUser UserPrincipal userPrincipal, @PathVariable("id") Long id) {
+    public ResponseEntity<ApiResponse> deleteGroupUser(@PathVariable Long boardId, @PathVariable("id") Long groupId, @CurrentUser UserPrincipal userPrincipal) {
         log.info("Updating group from account: {}", userPrincipal.getUsername());
         User user = userDetailService.getUserFromUserPrincipal(userPrincipal);
 
         checkUserPermission(user);
 
-        groupService.delete(user, id);
-        log.info("Group is successfully deleted by account: {}", user.getUsername());
+        groupService.delete(user, groupId);
+        log.info("Group [{}] successfully deleted by account: {}", groupId, user.getUsername());
         return ResponseEntity.ok(new ApiResponse(Boolean.TRUE, "Successfully deleted comment."));
     }
 }

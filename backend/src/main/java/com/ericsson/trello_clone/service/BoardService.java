@@ -11,6 +11,7 @@ import java.util.List;
 public interface BoardService {
     Board create(BoardDto boardDto);
     Board update(BoardDto boardDto);
+    void delete(Long id);
     Board getById(Long id);
     void addUserToBoard(Long boardId, User newUser);
     List<Board> getAllByUser(User user);

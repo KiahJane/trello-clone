@@ -1,11 +1,18 @@
-<div class="container">
+<div class="app-container">
   <header>
     <h1>Welcome to Trello Clone</h1>
+    <nav>
+      <ul>
+        <li><a routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a></li>
+      </ul>
+    </nav>
   </header>
-  <div class="content">
-    <p>This is a basic UI setup for the Trello clone application.</p>
-    <button (click)="showMessage()">Click me</button>
-    <button (click)="navigateToAdminDashboard()">Go to Admin Dashboard</button>
+
+  <main>
     <router-outlet></router-outlet>
-  </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Trello-Clone App. All rights reserved.</p>
+  </footer>
 </div>

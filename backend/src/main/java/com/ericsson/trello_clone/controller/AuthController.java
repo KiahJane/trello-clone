@@ -76,7 +76,7 @@ public class AuthController {
         }
     }
 
-    @PostMapping(AvailablePaths.CHANGE_PASSWORD) // Define the endpoint
+    @PostMapping(AvailablePaths.CHANGE_PASSWORD)
     public ResponseEntity<String> changePassword(@RequestBody ChangePasswordRequest changePasswordRequest) {
         try {
             User user = service.getUserByEmail(changePasswordRequest.getEmail());
