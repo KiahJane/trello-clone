@@ -1,2 +1,18 @@
-<h2>User Dashboard</h2>
-<app-board-summary></app-board-summary>
+<div class="user-dashboard-container">
+    <header>
+      <h1>Click on a board to get started.</h1>
+      <nav>
+        <ul>
+          <li><a routerLink="/user/board/{boardId}" routerLinkActive="active" ariaCurrentWhenActive="page">Board</a></li>
+        </ul>
+      </nav>
+    </header>
+  
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  
+    <footer>
+      <p>&copy; 2024 Trello-Clone App. All rights reserved.</p>
+    </footer>
+  </div>

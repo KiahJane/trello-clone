@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { ApplicationRoutes } from './app-main-rules/routes.enum';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AppModule } from './app.module';
 
 @Component({
@@ -12,27 +11,4 @@ import { AppModule } from './app.module';
 })
 export class AppComponent {
   title = 'trello-clone';
-
-  constructor(private router: Router) {}
-
-  navigateToLogin() {
-    this.router.navigate([ApplicationRoutes.LOGIN]);
-  }
-
-  navigateToRegister() {
-    this.router.navigate([ApplicationRoutes.REGISTER]);
-  }
-
-  navigateToAdminDashboard() {
-    this.router.navigate([ApplicationRoutes.ADMIN]);
-  }
-
-  navigateToUserDashboard() {
-    this.router.navigate([ApplicationRoutes.USER]);
-  }
-
-
-  showMessage() {
-    alert('Button clicked!');
-  }
 }

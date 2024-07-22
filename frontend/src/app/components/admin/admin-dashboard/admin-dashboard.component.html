@@ -1,6 +1,19 @@
-<h2>Admin Dashboard</h2>
-<nav>
-  <a routerLink="users">Manage Users</a>
-  <a routerLink="boards">Manage Boards</a>
-</nav>
-<router-outlet></router-outlet>
+<div class="admin-dashboard-container">
+  <header>
+    <h1>View existing boards or users</h1>
+    <nav>
+      <ul>
+        <li><a routerLink="/admin/boards" routerLinkActive="active" ariaCurrentWhenActive="page">Boards</a></li>
+        <li><a routerLink="/admin/users" routerLinkActive="active" ariaCurrentWhenActive="page">Users</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Trello-Clone App. All rights reserved.</p>
+  </footer>
+</div>
