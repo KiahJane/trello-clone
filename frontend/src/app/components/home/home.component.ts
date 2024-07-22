@@ -7,7 +7,7 @@ import { ApplicationRoutes } from '../../app-main-rules/routes.enum';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [AppModule, CommonModule, RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

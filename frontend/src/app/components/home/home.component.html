@@ -1,20 +1,19 @@
 <div class="home-container">
-    <header>
-      <h1>Login or register to get started!</h1>
-      <nav>
-        <ul>
-          <li><a routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a></li>
-          <li><a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Login</a></li>
-          <li><a routerLink="/register" routerLinkActive="active" ariaCurrentWhenActive="page">Register</a></li>
-        </ul>
-      </nav>
-    </header>
-  
-    <main>
-      <router-outlet></router-outlet>
-    </main>
-  
-    <footer>
-      <p>&copy; 2024 Trello-Clone App. All rights reserved.</p>
-    </footer>
-  </div>
+  <header>
+    <h1>Login or register to get started!</h1>
+    <nav>
+      <ul>
+        <li><a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Login</a></li>
+        <li><a routerLink="/register" routerLinkActive="active" ariaCurrentWhenActive="page">Register</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Trello-Clone App. All rights reserved.</p>
+  </footer>
+</div>
